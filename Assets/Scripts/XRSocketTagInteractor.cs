@@ -1,19 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class XRSocketTagInteractor : XRSocketInteractor
 {
-    public string targetTag;
+    public string correctTargetTag;
+    public string incorrectTargetTag;
+    public Material correctHoverMaterial;
+    public Material incorrectHoverMaterial;
 
     public override bool CanHover(IXRHoverInteractable interactable)
     {
-        return base.CanHover(interactable) && interactable.transform.CompareTag(targetTag);
+        if (interactable.transform.CompareTag(correctTargetTag))
+        {
+            interactableHoverMeshMaterial = correctHoverMaterial;
+            return base.CanHover(interactable);
+        } 
+        
+        if (interactable.transform.CompareTag(incorrectTargetTag))
+        {
+            interactableHoverMeshMaterial = incorrectHoverMaterial;
+            return base.CanHover(interactable);
+        }
+
+        return false;
     }
 
     public override bool CanSelect(IXRSelectInteractable interactable)
     {
-        return base.CanSelect(interactable) && interactable.transform.CompareTag(targetTag);
+        return base.CanSelect(interactable) && interactable.transform.CompareTag(correctTargetTag);
     }
 }

@@ -6,7 +6,8 @@ TagManager:
   tags:
   - Meteor
   - Energy
-  - Battery
+  - CorrectBattery
+  - IncorrectBattery
   layers:
   - Default
   - TransparentFX

@@ -26,14 +26,21 @@ public class BatterySocketHandler : MonoBehaviour
         {
             // The battery has been snapped into place
             Rigidbody batteryRigidbody = enteredObject.GetComponent<Rigidbody>();
+            XRGrabInteractable batteryGrabInteractable = enteredObject.GetComponent<XRGrabInteractable>();
+            Collider batteryCollider = enteredObject.GetComponent<Collider>();
+
             if (batteryRigidbody != null)
             {
                 batteryRigidbody.isKinematic = true;  // Disable battery physics
             }
-            MeshCollider batteryMeshCollider = enteredObject.GetComponent<MeshCollider>();
-            if (batteryMeshCollider != null)
+            if (batteryCollider != null)
             {
-                batteryMeshCollider.enabled = false;  // Disable battery physics
+                batteryCollider.enabled = false;  // Disable battery physics
+            }
+
+            if (batteryCollider != null)
+            {
+                batteryGrabInteractable.enabled = false;
             }
 
             //Debug.Log("Battery snapped into the socket!");
