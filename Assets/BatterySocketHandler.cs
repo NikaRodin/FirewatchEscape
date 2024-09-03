@@ -1,51 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class BatterySocketHandler : MonoBehaviour
+public class SocketGrabHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public XRSocketInteractor socketInteractor;
+
+    private void OnEnable()
     {
-        
+        // Subscribe to the select entered event
+        socketInteractor.selectEntered.AddListener(OnObjectGrabbed);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        // Unsubscribe from the select entered event
+        socketInteractor.selectEntered.RemoveListener(OnObjectGrabbed);
     }
 
-   
-    // This method will be called when the battery snaps into the socket
-    public void OnBatterySnapped(SelectEnterEventArgs args)
+    private void OnObjectGrabbed(SelectEnterEventArgs args)
     {
-        GameObject enteredObject = args.interactableObject.transform.gameObject;
-        if (enteredObject.tag == "Battery")
+        // Get the interactable object that was grabbed by the socket interactor
+        XRBaseInteractable grabbedObject = (XRBaseInteractable) args.interactableObject;
+
+        // Disable the XRGrabInteractable component on the grabbed object
+        Rigidbody grabInteractable = grabbedObject.GetComponent<Rigidbody>();
+        if (grabInteractable != null)
         {
-            // The battery has been snapped into place
-            Rigidbody batteryRigidbody = enteredObject.GetComponent<Rigidbody>();
-            XRGrabInteractable batteryGrabInteractable = enteredObject.GetComponent<XRGrabInteractable>();
-            Collider batteryCollider = enteredObject.GetComponent<Collider>();
-
-            if (batteryRigidbody != null)
-            {
-                batteryRigidbody.isKinematic = true;  // Disable battery physics
-            }
-            if (batteryCollider != null)
-            {
-                batteryCollider.enabled = false;  // Disable battery physics
-            }
-
-            if (batteryCollider != null)
-            {
-                batteryGrabInteractable.enabled = false;
-            }
-
-            //Debug.Log("Battery snapped into the socket!");
+            grabInteractable.isKinematic = true;
         }
     }
-
-
 }
