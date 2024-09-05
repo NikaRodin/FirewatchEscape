@@ -5,12 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/1_StartScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/2_SpaceshipScene.unity
+    path: Assets/Scenes/1_StartMenu.unity
+    guid: 58c271831429f6e4b89feac56c39a849
+  - enabled: 1
+    path: Assets/Scenes/2_Game.unity
     guid: e21016c027f572449af76623dc6209b9
+  - enabled: 1
+    path: Assets/Scenes/3_ForestSaved.unity
+    guid: 07490ea4a920a0544aa70d24dd97a069
+  - enabled: 1
+    path: Assets/Scenes/4_GameOver.unity
+    guid: eefed7523c6537e4e8a719bc997f4f18
   m_configObjects:
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 64df4cca1b9905f49ad023f6c206c08f,
       type: 2}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.HDROutputUtils;
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -50,5 +51,10 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         operation.allowSceneActivation = true;
+    }
+
+    public void GoToEndgameSceneAsync(int sceneIndex)
+    {
+        StartCoroutine(GoToSceneAsyncRoutine(sceneIndex));
     }
 }
