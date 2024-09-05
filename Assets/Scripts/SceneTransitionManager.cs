@@ -60,13 +60,13 @@ public class SceneTransitionManager : MonoBehaviour
 
     IEnumerator GoToEndgameSceneAsyncRoutine(int sceneIndex)
     {
-        fadeScreen.FadeOut();
         //Launch the new scene
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         operation.allowSceneActivation = false;
 
 
         yield return new WaitForSeconds(3);
+        fadeScreen.FadeOut();
 
         float timer = 0;
         while (timer <= fadeScreen.fadeDuration && !operation.isDone)
