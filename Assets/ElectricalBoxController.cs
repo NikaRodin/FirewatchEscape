@@ -17,6 +17,7 @@ public class ElectricalBoxController : MonoBehaviour
     public GameObject voltageArrowOff;
 
     public Light[] roomLights;
+    public Light ambientLight;
     public Fan_Rotation ceilingFan;
 
     private bool isMatch = true;
@@ -76,6 +77,7 @@ public class ElectricalBoxController : MonoBehaviour
         {
             roomLight.enabled = true;
         }
+        ambientLight.enabled = false;
     }
 
     void turnOffRoomLights()
@@ -84,6 +86,7 @@ public class ElectricalBoxController : MonoBehaviour
         {
             roomLight.enabled = false;
         }
+        ambientLight.enabled = true;
     }
 
     void turnOnCeilingFan()
